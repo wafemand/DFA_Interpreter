@@ -1,6 +1,7 @@
 import System.Environment
 import DFA
 
+
 main :: IO()
 main = do
     [dfaFile, inputFile, outputFile] <- getArgs
@@ -19,6 +20,7 @@ process rawDFA input = showTex dfa chains results where
 
 
 -- Parsing input
+
 edgesHeader = "Edges:"
 termsHeader = "Terminals:"
 parseDFA :: String -> DFA
@@ -56,6 +58,7 @@ showListItem = ("\\item "++)
 showArrow c = " \\xrightarrow{" ++ c : "} "
 showVertex dfa v | isTerminal dfa v = "\\fbox{" ++ show v ++ "}"
                  | otherwise = show v
+
 
 showPath :: DFA -> String -> [Int] -> String
 showPath dfa chain vs = fst $ foldl f ini (zip chain (tail vs)) where

@@ -2,7 +2,7 @@ module DFA where
 
 import Data.Map.Strict as Map (lookup, fromList)
 
--- DFA : <Terminals, Start, DeltaFunction>
+
 data DFA = DFA {
     terms :: [Int], 
     root :: Int, 
@@ -12,9 +12,7 @@ data DFA = DFA {
 
 isTerminal (DFA terms _ _) v = elem v terms
 
-
 processChain (DFA _ root delta) = scanl delta root
-
 
 buildDelta :: [(Int, Char, Int)] -> Int -> Char -> Int
 buildDelta edges = delta where
@@ -23,6 +21,4 @@ buildDelta edges = delta where
             (Just v) -> v
             Nothing -> 0
     toKV (x, y, z) = ((x, y), z)
-
-
 
