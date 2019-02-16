@@ -54,33 +54,28 @@ formulaEnd = "\\end {gathered} \n\
 
 showListItem = ("\\item "++)
 showArrow c = " \\xrightarrow{" ++ c : "} "
-showVertex dfa v | isTerminal dfa v = show v
+showVertex dfa v | isTerminal dfa v = "\\fbox{" ++ show v ++ "}"
                  | otherwise = show v
 
 showPath :: DFA -> String -> [Int] -> String
-showPath dfa chain vs = fst $ foldl f ini (zip chain (tail vs))
-    where
-        maxLineLen = 150
+showPath dfa chain vs = fst $ foldl f ini (zip chain (tail vs)) where
+    maxLineLen = 150
 
-        ini = (iniBlock, length iniBlock) where 
+    ini = (iniBlock, length iniBlock) where 
             iniBlock = showVertex dfa $ head vs
 
-        f (st, lineLen) (c, v) | newLen <= maxLineLen = (st ++ block, newLen)
-                               | otherwise = (st ++ arrow ++ "\\\\\n" ++ block, length block)
-            where 
-                block = arrow ++ (showVertex dfa v)
-                newLen = lineLen + length block
-                arrow = showArrow c
+    f (st, lineLen) (c, v) | newLen <= maxLineLen = (st ++ block, newLen)
+                           | otherwise = (st ++ arrow ++ "\\\\\n" ++ block, length block)
+        where 
+            block = arrow ++ (showVertex dfa v)
+            newLen = lineLen + length block
+            arrow = showArrow c
 
 
-showTex dfa chains results = 
-    texHeader ++ 
-    (foldl f "" $ zip chains results) ++
-    texEnd
-    where
-        f st (chain, result) = 
-            st ++ 
-            (showListItem chain) ++ "\n" ++
-            formulaHeader ++ 
-            (showPath dfa chain result) ++ "\n" ++
-            formulaEnd
+showTex dfa chains results = texHeader ++ (foldl f "" $ zip chains results) ++ texEnd where
+    f st (chain, result) = 
+        st 
+        ++ (showListItem chain) ++ "\n"
+        ++ formulaHeader
+        ++ (showPath dfa chain result) ++ "\n"
+        ++ formulaEnd

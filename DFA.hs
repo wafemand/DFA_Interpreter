@@ -21,7 +21,7 @@ buildDelta edges = delta where
     delta v c = 
         case Map.lookup (v, c) (Map.fromList $ map toKV edges) of
             (Just v) -> v
-            Nothing -> -1
+            Nothing -> 0
     toKV (x, y, z) = ((x, y), z)
 
 
