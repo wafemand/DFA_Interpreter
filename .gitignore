@@ -1,6 +1,4 @@
 *.log
-*.pdf
-*.tex
 dist
 dist-*
 cabal-dev
