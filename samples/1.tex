@@ -2,6 +2,14 @@
 \usepackage{mathtools} 
 \usepackage{amsmath} 
 \begin {document} 
+\section* {DFA Description} 
+Start vertex: $\fbox{1}$
+\begin {equation*} 
+\begin {gathered} 
+\fbox{1} \xrightarrow{a} 2\\2 \xrightarrow{b} \fbox{1}\\2 \xrightarrow{c} \fbox{1}\\
+\end {gathered} 
+\end {equation*} 
+\section* {Chains processing} 
 \begin {enumerate} 
 \item abababab
 \begin {equation*} 
@@ -10,18 +18,21 @@
  \xrightarrow{a} 2 \xrightarrow{b} \fbox{1}
 \end {gathered} 
 \end {equation*} 
+
 \item aaaaa
 \begin {equation*} 
 \begin {gathered} 
 \fbox{1} \xrightarrow{a} 2 \xrightarrow{a} 0 \xrightarrow{a} 0 \xrightarrow{a} 0 \xrightarrow{a} 0
 \end {gathered} 
 \end {equation*} 
+
 \item awfasdf
 \begin {equation*} 
 \begin {gathered} 
 \fbox{1} \xrightarrow{a} 2 \xrightarrow{w} 0 \xrightarrow{f} 0 \xrightarrow{a} 0 \xrightarrow{s} 0 \xrightarrow{d} 0 \xrightarrow{f} 0
 \end {gathered} 
 \end {equation*} 
+
 \item abacacab
 \begin {equation*} 
 \begin {gathered} 
@@ -29,5 +40,6 @@
  \xrightarrow{a} 2 \xrightarrow{b} \fbox{1}
 \end {gathered} 
 \end {equation*} 
+
 \end {enumerate}
 \end {document}

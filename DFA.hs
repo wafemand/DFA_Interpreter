@@ -6,13 +6,14 @@ import Data.Map.Strict as Map (lookup, fromList)
 data DFA = DFA {
     terms :: [Int], 
     root :: Int, 
-    delta :: (Int -> Char -> Int)
+    delta :: (Int -> Char -> Int),
+    edges :: [(Int, Char, Int)]
 }
 
 
-isTerminal (DFA terms _ _) v = elem v terms
+isTerminal dfa v = elem v $ terms dfa
 
-processChain (DFA _ root delta) = scanl delta root
+processChain dfa = scanl (delta dfa) (root dfa)
 
 buildDelta :: [(Int, Char, Int)] -> Int -> Char -> Int
 buildDelta edges = delta where

@@ -19,22 +19,27 @@ process rawDFA input = showTex dfa chains results where
     results = map (processChain dfa) chains
 
 
--- Parsing input
+-- Parsing dfa
 
 edgesHeader = "Edges:"
 termsHeader = "Terminals:"
 parseDFA :: String -> DFA
-parseDFA input = DFA terms root delta where
-    root = read $ head wds
-    delta = buildDelta $ map parseEdge $ group3 $ tail edgesStr
-    terms = map (read) $ tail termsStr
-    wds = words input
-    (edgesStr, termsStr) = break (==termsHeader) $ snd $ break (==edgesHeader) wds
-    parseEdge (x,y,z) = (read x, head y, read z)
-    group3 :: [t] -> [(t, t, t)]
-    group3 [] = []
-    group3 (x:y:z:xs) = (x, y, z) : group3 xs
-    group3 _ = error "length doesn't divide by 3"
+parseDFA input = DFA {
+        root = read $ head wds,
+        edges = edges,
+        delta = buildDelta edges,
+        terms = map (read) $ tail termsStr
+    } 
+    where
+        edges =  map parseEdge $ group3 $ tail edgesStr
+        wds = words input
+        (edgesStr, termsStr) = break (==termsHeader) $ snd $ break (==edgesHeader) wds
+    
+        parseEdge (x,y,z) = (read x, head y, read z)
+        group3 :: [t] -> [(t, t, t)]
+        group3 [] = []
+        group3 (x:y:z:xs) = (x, y, z) : group3 xs
+        group3 _ = error "length doesn't divide by 3"
 
 
 -- LaTeX 
@@ -42,7 +47,11 @@ parseDFA input = DFA terms root delta where
 texHeader = "\\documentclass[12pt]{article} \n\
 \\\usepackage{mathtools} \n\
 \\\usepackage{amsmath} \n\
-\\\begin {document} \n\
+\\\begin {document} \n"
+
+dfaHeader = "\\section* {DFA Description} \n"
+
+listHeader = "\\section* {Chains processing} \n\
 \\\begin {enumerate} \n"
 
 texEnd = "\\end {enumerate}\n\
@@ -75,10 +84,33 @@ showPath dfa chain vs = fst $ foldl f ini (zip chain (tail vs)) where
             arrow = showArrow c
 
 
-showTex dfa chains results = texHeader ++ (foldl f "" $ zip chains results) ++ texEnd where
-    f st (chain, result) = 
-        st 
-        ++ (showListItem chain) ++ "\n"
-        ++ formulaHeader
-        ++ (showPath dfa chain result) ++ "\n"
-        ++ formulaEnd
+showDFA dfa = 
+    "Start vertex: $" ++ (showVertexDFA $ root dfa) ++ "$\n"
+    ++ formulaHeader
+    ++ (foldl f "" $ edges dfa) ++ "\n"
+    ++ formulaEnd
+    where
+        f st (from, symbol, to) = 
+            st 
+            ++ (showVertexDFA from) 
+            ++ (showArrow symbol) 
+            ++ (showVertexDFA to) 
+            ++ "\\\\"
+        showVertexDFA = showVertex dfa
+
+
+showTex dfa chains results = 
+    texHeader
+    ++ dfaHeader
+    ++ (showDFA dfa)
+    ++ listHeader
+    ++ (foldl f "" $ zip chains results) 
+    ++ texEnd 
+    where
+        f st (chain, result) = 
+            st 
+            ++ (showListItem chain) ++ "\n"
+            ++ formulaHeader
+            ++ (showPath dfa chain result) ++ "\n" 
+            ++ formulaEnd
+            ++ "\n"
