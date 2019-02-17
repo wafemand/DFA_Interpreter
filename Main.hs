@@ -51,7 +51,7 @@ texHeader = "\\documentclass[12pt]{article} \n\
 \\\begin {document} \n"
 
 dfaHeader = "\\section* {DFA Description} \n\
-\\\begin {multicols}{4} \n"
+\\\begin {multicols}{3} \n"
 
 dfaEnd = "\\end{multicols}\n"
 
@@ -95,11 +95,11 @@ showDFA dfa =
     where
         f st (from, symbol, to) = 
             st 
-            ++ formulaHeader
+            ++ "$"
             ++ (showVertexDFA from) 
             ++ (showArrow symbol) 
             ++ (showVertexDFA to) 
-            ++ formulaEnd
+            ++ "$\n\n"
         showVertexDFA = showVertex dfa
 
 
