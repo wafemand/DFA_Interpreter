@@ -1,14 +1,25 @@
 \documentclass[12pt]{article} 
 \usepackage{mathtools} 
+\usepackage{multicol} 
 \usepackage{amsmath} 
 \begin {document} 
 \section* {DFA Description} 
-Start vertex: $\fbox{1}$
+\begin {multicols}{4} 
+[Start vertex: $\fbox{1}$]
 \begin {equation*} 
 \begin {gathered} 
-\fbox{1} \xrightarrow{a} 2\\2 \xrightarrow{b} \fbox{1}\\2 \xrightarrow{c} \fbox{1}\\
-\end {gathered} 
+\fbox{1} \xrightarrow{a} 2\end {gathered} 
 \end {equation*} 
+\begin {equation*} 
+\begin {gathered} 
+2 \xrightarrow{b} \fbox{1}\end {gathered} 
+\end {equation*} 
+\begin {equation*} 
+\begin {gathered} 
+2 \xrightarrow{c} \fbox{1}\end {gathered} 
+\end {equation*} 
+
+\end{multicols}
 \section* {Chains processing} 
 \begin {enumerate} 
 \item abababab
@@ -22,14 +33,14 @@ Start vertex: $\fbox{1}$
 \item aaaaa
 \begin {equation*} 
 \begin {gathered} 
-\fbox{1} \xrightarrow{a} 2 \xrightarrow{a} 0 \xrightarrow{a} 0 \xrightarrow{a} 0 \xrightarrow{a} 0
+\fbox{1} \xrightarrow{a} 2 \xrightarrow{a} X \xrightarrow{a} X \xrightarrow{a} X \xrightarrow{a} X
 \end {gathered} 
 \end {equation*} 
 
 \item awfasdf
 \begin {equation*} 
 \begin {gathered} 
-\fbox{1} \xrightarrow{a} 2 \xrightarrow{w} 0 \xrightarrow{f} 0 \xrightarrow{a} 0 \xrightarrow{s} 0 \xrightarrow{d} 0 \xrightarrow{f} 0
+\fbox{1} \xrightarrow{a} 2 \xrightarrow{w} X \xrightarrow{f} X \xrightarrow{a} X \xrightarrow{s} X \xrightarrow{d} X \xrightarrow{f} X
 \end {gathered} 
 \end {equation*} 
 

@@ -1,0 +1,193 @@
+\documentclass[12pt]{article} 
+\usepackage{mathtools} 
+\usepackage{multicol} 
+\usepackage{amsmath} 
+\begin {document} 
+\section* {DFA Description} 
+\begin {multicols}{4} 
+[Start vertex: $\fbox{0}$]
+\begin {equation*} 
+\begin {gathered} 
+\fbox{0} \xrightarrow{0} \fbox{0}\end {gathered} 
+\end {equation*} 
+\begin {equation*} 
+\begin {gathered} 
+\fbox{0} \xrightarrow{1} 1\end {gathered} 
+\end {equation*} 
+\begin {equation*} 
+\begin {gathered} 
+\fbox{0} \xrightarrow{2} 2\end {gathered} 
+\end {equation*} 
+\begin {equation*} 
+\begin {gathered} 
+\fbox{0} \xrightarrow{3} \fbox{0}\end {gathered} 
+\end {equation*} 
+\begin {equation*} 
+\begin {gathered} 
+\fbox{0} \xrightarrow{4} 1\end {gathered} 
+\end {equation*} 
+\begin {equation*} 
+\begin {gathered} 
+\fbox{0} \xrightarrow{5} 2\end {gathered} 
+\end {equation*} 
+\begin {equation*} 
+\begin {gathered} 
+\fbox{0} \xrightarrow{6} \fbox{0}\end {gathered} 
+\end {equation*} 
+\begin {equation*} 
+\begin {gathered} 
+\fbox{0} \xrightarrow{7} 1\end {gathered} 
+\end {equation*} 
+\begin {equation*} 
+\begin {gathered} 
+\fbox{0} \xrightarrow{8} 2\end {gathered} 
+\end {equation*} 
+\begin {equation*} 
+\begin {gathered} 
+\fbox{0} \xrightarrow{9} \fbox{0}\end {gathered} 
+\end {equation*} 
+\begin {equation*} 
+\begin {gathered} 
+1 \xrightarrow{0} 1\end {gathered} 
+\end {equation*} 
+\begin {equation*} 
+\begin {gathered} 
+1 \xrightarrow{1} 2\end {gathered} 
+\end {equation*} 
+\begin {equation*} 
+\begin {gathered} 
+1 \xrightarrow{2} \fbox{0}\end {gathered} 
+\end {equation*} 
+\begin {equation*} 
+\begin {gathered} 
+1 \xrightarrow{3} 1\end {gathered} 
+\end {equation*} 
+\begin {equation*} 
+\begin {gathered} 
+1 \xrightarrow{4} 2\end {gathered} 
+\end {equation*} 
+\begin {equation*} 
+\begin {gathered} 
+1 \xrightarrow{5} \fbox{0}\end {gathered} 
+\end {equation*} 
+\begin {equation*} 
+\begin {gathered} 
+1 \xrightarrow{6} 1\end {gathered} 
+\end {equation*} 
+\begin {equation*} 
+\begin {gathered} 
+1 \xrightarrow{7} 2\end {gathered} 
+\end {equation*} 
+\begin {equation*} 
+\begin {gathered} 
+1 \xrightarrow{8} \fbox{0}\end {gathered} 
+\end {equation*} 
+\begin {equation*} 
+\begin {gathered} 
+1 \xrightarrow{9} 1\end {gathered} 
+\end {equation*} 
+\begin {equation*} 
+\begin {gathered} 
+2 \xrightarrow{0} 2\end {gathered} 
+\end {equation*} 
+\begin {equation*} 
+\begin {gathered} 
+2 \xrightarrow{1} \fbox{0}\end {gathered} 
+\end {equation*} 
+\begin {equation*} 
+\begin {gathered} 
+2 \xrightarrow{2} 1\end {gathered} 
+\end {equation*} 
+\begin {equation*} 
+\begin {gathered} 
+2 \xrightarrow{3} 2\end {gathered} 
+\end {equation*} 
+\begin {equation*} 
+\begin {gathered} 
+2 \xrightarrow{4} \fbox{0}\end {gathered} 
+\end {equation*} 
+\begin {equation*} 
+\begin {gathered} 
+2 \xrightarrow{5} 1\end {gathered} 
+\end {equation*} 
+\begin {equation*} 
+\begin {gathered} 
+2 \xrightarrow{6} 2\end {gathered} 
+\end {equation*} 
+\begin {equation*} 
+\begin {gathered} 
+2 \xrightarrow{7} \fbox{0}\end {gathered} 
+\end {equation*} 
+\begin {equation*} 
+\begin {gathered} 
+2 \xrightarrow{8} 1\end {gathered} 
+\end {equation*} 
+\begin {equation*} 
+\begin {gathered} 
+2 \xrightarrow{9} 2\end {gathered} 
+\end {equation*} 
+
+\end{multicols}
+\section* {Chains processing} 
+\begin {enumerate} 
+\item 3
+\begin {equation*} 
+\begin {gathered} 
+\fbox{0} \xrightarrow{3} \fbox{0}
+\end {gathered} 
+\end {equation*} 
+
+\item 45
+\begin {equation*} 
+\begin {gathered} 
+\fbox{0} \xrightarrow{4} 1 \xrightarrow{5} \fbox{0}
+\end {gathered} 
+\end {equation*} 
+
+\item 44
+\begin {equation*} 
+\begin {gathered} 
+\fbox{0} \xrightarrow{4} 1 \xrightarrow{4} 2
+\end {gathered} 
+\end {equation*} 
+
+\item 43
+\begin {equation*} 
+\begin {gathered} 
+\fbox{0} \xrightarrow{4} 1 \xrightarrow{3} 1
+\end {gathered} 
+\end {equation*} 
+
+\item 0
+\begin {equation*} 
+\begin {gathered} 
+\fbox{0} \xrightarrow{0} \fbox{0}
+\end {gathered} 
+\end {equation*} 
+
+\item 999
+\begin {equation*} 
+\begin {gathered} 
+\fbox{0} \xrightarrow{9} \fbox{0} \xrightarrow{9} \fbox{0} \xrightarrow{9} \fbox{0}
+\end {gathered} 
+\end {equation*} 
+
+\item 5126321253623441235
+\begin {equation*} 
+\begin {gathered} 
+\fbox{0} \xrightarrow{5} 2 \xrightarrow{1} \fbox{0} \xrightarrow{2} 2 \xrightarrow{6} 2 \xrightarrow{3} 2 \xrightarrow{2} 1 \xrightarrow{1} 2 \xrightarrow{2} \\
+ \xrightarrow{2} 1 \xrightarrow{5} \fbox{0} \xrightarrow{3} \fbox{0} \xrightarrow{6} \fbox{0} \xrightarrow{2} 2 \xrightarrow{3} 2 \xrightarrow{4} \\
+ \xrightarrow{4} \fbox{0} \xrightarrow{4} 1 \xrightarrow{1} 2 \xrightarrow{2} 1 \xrightarrow{3} 1 \xrightarrow{5} \fbox{0}
+\end {gathered} 
+\end {equation*} 
+
+\item 1234567892
+\begin {equation*} 
+\begin {gathered} 
+\fbox{0} \xrightarrow{1} 1 \xrightarrow{2} \fbox{0} \xrightarrow{3} \fbox{0} \xrightarrow{4} 1 \xrightarrow{5} \fbox{0} \xrightarrow{6} \fbox{0} \xrightarrow{7} \\
+ \xrightarrow{7} 1 \xrightarrow{8} \fbox{0} \xrightarrow{9} \fbox{0} \xrightarrow{2} 2
+\end {gathered} 
+\end {equation*} 
+
+\end {enumerate}
+\end {document}

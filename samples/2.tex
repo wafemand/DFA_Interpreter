@@ -1,20 +1,39 @@
 \documentclass[12pt]{article} 
 \usepackage{mathtools} 
+\usepackage{multicol} 
 \usepackage{amsmath} 
 \begin {document} 
 \section* {DFA Description} 
-Start vertex: $1$
+\begin {multicols}{4} 
+[Start vertex: $1$]
 \begin {equation*} 
 \begin {gathered} 
-1 \xrightarrow{a} 1\\1 \xrightarrow{b} 2\\2 \xrightarrow{b} 2\\2 \xrightarrow{c} \fbox{3}\\\fbox{3} \xrightarrow{c} \fbox{3}\\
-\end {gathered} 
+1 \xrightarrow{a} 1\end {gathered} 
 \end {equation*} 
+\begin {equation*} 
+\begin {gathered} 
+1 \xrightarrow{b} 2\end {gathered} 
+\end {equation*} 
+\begin {equation*} 
+\begin {gathered} 
+2 \xrightarrow{b} 2\end {gathered} 
+\end {equation*} 
+\begin {equation*} 
+\begin {gathered} 
+2 \xrightarrow{c} \fbox{3}\end {gathered} 
+\end {equation*} 
+\begin {equation*} 
+\begin {gathered} 
+\fbox{3} \xrightarrow{c} \fbox{3}\end {gathered} 
+\end {equation*} 
+
+\end{multicols}
 \section* {Chains processing} 
 \begin {enumerate} 
 \item abacaba
 \begin {equation*} 
 \begin {gathered} 
-1 \xrightarrow{a} 1 \xrightarrow{b} 2 \xrightarrow{a} 0 \xrightarrow{c} 0 \xrightarrow{a} 0 \xrightarrow{b} 0 \xrightarrow{a} 0
+1 \xrightarrow{a} 1 \xrightarrow{b} 2 \xrightarrow{a} X \xrightarrow{c} X \xrightarrow{a} X \xrightarrow{b} X \xrightarrow{a} X
 \end {gathered} 
 \end {equation*} 
 
@@ -37,7 +56,7 @@ Start vertex: $1$
 \item abca
 \begin {equation*} 
 \begin {gathered} 
-1 \xrightarrow{a} 1 \xrightarrow{b} 2 \xrightarrow{c} \fbox{3} \xrightarrow{a} 0
+1 \xrightarrow{a} 1 \xrightarrow{b} 2 \xrightarrow{c} \fbox{3} \xrightarrow{a} X
 \end {gathered} 
 \end {equation*} 
 

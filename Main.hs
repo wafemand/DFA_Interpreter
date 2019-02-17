@@ -46,10 +46,14 @@ parseDFA input = DFA {
 
 texHeader = "\\documentclass[12pt]{article} \n\
 \\\usepackage{mathtools} \n\
+\\\usepackage{multicol} \n\
 \\\usepackage{amsmath} \n\
 \\\begin {document} \n"
 
-dfaHeader = "\\section* {DFA Description} \n"
+dfaHeader = "\\section* {DFA Description} \n\
+\\\begin {multicols}{4} \n"
+
+dfaEnd = "\\end{multicols}\n"
 
 listHeader = "\\section* {Chains processing} \n\
 \\\begin {enumerate} \n"
@@ -65,6 +69,7 @@ formulaEnd = "\\end {gathered} \n\
 
 showListItem = ("\\item "++)
 showArrow c = " \\xrightarrow{" ++ c : "} "
+showVertex _ (-1) = "X"
 showVertex dfa v | isTerminal dfa v = "\\fbox{" ++ show v ++ "}"
                  | otherwise = show v
 
@@ -85,17 +90,16 @@ showPath dfa chain vs = fst $ foldl f ini (zip chain (tail vs)) where
 
 
 showDFA dfa = 
-    "Start vertex: $" ++ (showVertexDFA $ root dfa) ++ "$\n"
-    ++ formulaHeader
+    "[Start vertex: $" ++ (showVertexDFA $ root dfa) ++ "$]\n"
     ++ (foldl f "" $ edges dfa) ++ "\n"
-    ++ formulaEnd
     where
         f st (from, symbol, to) = 
             st 
+            ++ formulaHeader
             ++ (showVertexDFA from) 
             ++ (showArrow symbol) 
             ++ (showVertexDFA to) 
-            ++ "\\\\"
+            ++ formulaEnd
         showVertexDFA = showVertex dfa
 
 
@@ -103,6 +107,7 @@ showTex dfa chains results =
     texHeader
     ++ dfaHeader
     ++ (showDFA dfa)
+    ++ dfaEnd
     ++ listHeader
     ++ (foldl f "" $ zip chains results) 
     ++ texEnd 
